@@ -16,7 +16,7 @@ function writeTime(timeDivId, date) {
         " " + date.getDate() + ", " + date.getFullYear();
     
     let amPm = date.getHours() < 12 ? " AM" : " PM";
-    let hour = Math.max(1, date.getHours() % 12);
+    let hour = date.getHours() % 12 == 0 ? 12 : date.getHours() % 12;
     let minutes = String(date.getMinutes()).padStart(2, '0');
     let seconds = String(date.getSeconds()).padStart(2, '0');
 
@@ -25,15 +25,28 @@ function writeTime(timeDivId, date) {
 
 
 function setTime() {
-    let curDate = new Date();
+    let curDate = new Date()
+    let judgement = new Date("May 8, 2022 19:30:00");
     let listRelease = new Date("May 5, 2022 0:00:00");
     
 
     let msDiff = curDate - listRelease;
-    msDiff *= 86400 / 900;
+    msDiff *= 96;
 
-    let scavStart = new Date("January 1, 2014 0:00:00");
-    let scavTime = new Date(scavStart.getTime() + msDiff);
+    if (curDate < judgement) {
+        var scavStart = new Date("January 1, 2016 0:00:00");
+        var scavTime = new Date(scavStart.getTime() + msDiff);
+        
+        // Adjust for 2014 supposedly being a leap year
+        scavTime.setYear(scavTime.getFullYear() - 2);
+    } else {
+        var scavStart = new Date("January 1, 2015 0:00:00");
+        msDiff -= 1000 * 366 * 24 * 60 * 60;
+        var scavTime = new Date(scavStart.getTime() + msDiff);   
+    }
+    
+
+    
 
     writeTime("chicago", curDate);
     writeTime("scav", scavTime);
