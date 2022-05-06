@@ -1,0 +1,39 @@
+@font-face {
+  font-family: Redkost;
+  src: url(Redkost.otf);
+}
+
+html {
+	text-align: center;
+	font-family: Redkost;
+}
+
+p {
+	margin-bottom: 0.2rem;
+	margin-top: 0;
+}
+
+img {
+	margin: 2rem;
+	max-width: 60%;
+	max-height: 8rem;
+	align-content: center;
+}
+
+.location {
+	font-size: 2rem;
+}
+
+.timezone {
+	font-size: 1.3rem;
+	margin-bottom: 0.6rem;
+}
+
+.date {
+	font-size: 1.5rem;
+}
+
+.time {
+	font-size: 2.5rem;
+	margin-bottom: 3rem;
+}
